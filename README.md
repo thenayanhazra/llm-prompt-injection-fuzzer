@@ -1,8 +1,31 @@
-# llm-injection-fuzzer
+# LLM Prompt Injection Fuzzer
 
-Systematic prompt injection testing for LLM API endpoints.
+[![CI](https://github.com/thenayanhazra/LLM-Prompt-Injection-Fuzzer/actions/workflows/ci.yml/badge.svg)](https://github.com/thenayanhazra/LLM-Prompt-Injection-Fuzzer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Takes an API endpoint (OpenAI, Anthropic, or any OpenAI-compatible server) and runs a corpus of prompt injection techniques against it. Outputs a structured report with per-category bypass rates.
+**Measures how often a model, or the system prompt you actually ship, follows an attacker instead of its own instructions.**
+
+Point it at any OpenAI, Anthropic or OpenAI-compatible endpoint. It runs 42 injection techniques across six categories (direct, indirect, encoded, multilingual, persona and multi-turn) and reports a bypass rate for each. Every payload carries a unique canary string, so success is measured rather than guessed.
+
+## Why it matters
+
+- **"Is our assistant safe?" needs a number.** Bypass rates by category turn a vague worry into a baseline you can track from release to release, and compare across models before choosing one.
+- **Guardrails live in your configuration, not only in the model.** Run the corpus against your real system prompt and filters to see what holds up.
+- **It runs in CI.** A bypass-rate threshold can block a risky prompt change the same way a failing test blocks code.
+
+## What you get
+
+The report below comes from the [simulated target](examples/simulated_target.py) bundled in this repo, a stand-in for a model whose only defence is a keyword blocklist. The blocklist stopped 11 of 42 attacks and missed every multilingual one, which is the usual lesson about keyword filters. You can reproduce it without an API key:
+
+```bash
+python examples/simulated_target.py &
+injection-fuzzer scan -p generic -m keyword-filter \
+  --base-url http://127.0.0.1:8808/v1/chat/completions
+```
+
+<img src="docs/img/sample-report.png" alt="Fuzzer report: 42 payloads, 31 bypasses, 73.8% bypass rate, broken down by category" width="720">
+
+---
 
 ## What it tests
 

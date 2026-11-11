@@ -63,7 +63,7 @@ def scan(
         }
         env_var = env_map.get(provider, "LLM_API_KEY")
         api_key = os.environ.get(env_var, "")
-        if not api_key:
+        if not api_key and provider != "generic":  # local/custom endpoints may need no key
             console.print(f"[red]No API key. Set --api-key or ${env_var}[/red]")
             sys.exit(1)
 

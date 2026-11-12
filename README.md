@@ -1,6 +1,6 @@
 # LLM Prompt Injection Fuzzer
 
-[![CI](https://github.com/thenayanhazra/LLM-Prompt-Injection-Fuzzer/actions/workflows/ci.yml/badge.svg)](https://github.com/thenayanhazra/LLM-Prompt-Injection-Fuzzer/actions/workflows/ci.yml)
+[![CI](https://github.com/thenayanhazra/llm-prompt-injection-fuzzer/actions/workflows/ci.yml/badge.svg)](https://github.com/thenayanhazra/llm-prompt-injection-fuzzer/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **Measures how often a model, or the system prompt you actually ship, follows an attacker instead of its own instructions.**

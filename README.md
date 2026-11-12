@@ -25,6 +25,8 @@ injection-fuzzer scan -p generic -m keyword-filter \
 
 <img src="docs/img/sample-report.png" alt="Fuzzer report: 42 payloads, 31 bypasses, 73.8% bypass rate, broken down by category" width="720">
 
+> **Part of a kit.** This tool is one of four that [AI Security Assessment](https://github.com/thenayanhazra/ai-security-assessment) runs together against an AI agent platform, combining their findings into one executive report.
+
 ---
 
 ## What it tests
